@@ -1,26 +1,40 @@
 #include <stdio.h>
-#include <string.h>
+
+void concatenate(char str1[], char str2[], char result[]) {
+    int i = 0, j = 0;
+
+    // Copy the first string to the result
+    while (str1[i] != '\0') {
+        result[i] = str1[i];
+        i++;
+    }
+
+    // Copy the second string to the result after the first
+    while (str2[j] != '\0') {
+        result[i] = str2[j];
+        i++;
+        j++;
+    }
+
+    // Null-terminate the resulting string
+    result[i] = '\0';
+}
 
 int main() {
-    // Define the first two strings
-    char str1[100], str2[100], str3[200];
+    char str1[100], str2[100], result[200];
 
-    // Input the first string
+    // Input two strings from the user
     printf("Enter the first string: ");
-    fgets(str1, sizeof(str1), stdin);
-    str1[strcspn(str1, "\n")] = 0; // Remove newline character if present
+    gets(str1);
 
-    // Input the second string
     printf("Enter the second string: ");
-    fgets(str2, sizeof(str2), stdin);
-    str2[strcspn(str2, "\n")] = 0; // Remove newline character if present
+    gets(str2);
 
-    // Concatenate the strings into str3
-    strcpy(str3, str1);   // Copy str1 into str3
-    strcat(str3, str2);   // Append str2 to str3
+    // Concatenate the strings
+    concatenate(str1, str2, result);
 
-    // Print the concatenated string0
-    printf("Concatenated string: %s\n", str3);
+    // Output the concatenated string
+    printf("The concatenated string is: %s\n", result);
 
     return 0;
 }
